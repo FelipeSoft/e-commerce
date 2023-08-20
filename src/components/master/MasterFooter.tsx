@@ -4,7 +4,7 @@ import { MdLocationOn, MdMailOutline, MdPhone } from "react-icons/md";
 export const MasterFooter = () => {
     return (
         <footer className="bg-white pt-4">
-            <nav className="container mx-auto flex items-start justify-between pt-2 pb-4">
+            <nav className="container mx-auto flex items-start gap-16 pt-2 pb-4">
                 <div>
                     <h1 className="text-3xl font-semibold">e<span className="text-indigo-700">commerce</span></h1>
                     <p className="mb-8">Somos a nova geração de tecnologia! 🚀</p>
@@ -23,9 +23,6 @@ export const MasterFooter = () => {
                             <p className="text-gray-500">+55 (19) 99988-7766</p>
                         </div>
                     </div>
-                </div>
-                <div>
-                    ...
                 </div>
                 <div>
                     <div className="flex flex-col items-start mb-8">   
