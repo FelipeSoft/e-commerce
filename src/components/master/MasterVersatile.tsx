@@ -4,7 +4,7 @@ type Props = {
 
 export const MasterVersatile = ({ children }: Props) => {
     return (
-        <div className="w-3/4 h-full flex flex-col">
+        <div className="w-full h-full flex flex-col">
             { children }
         </div>
     )

@@ -4,7 +4,7 @@ type Props = {
 
 export const MasterRoot = ({ children }: Props) => {
     return (
-        <div className="w-full">
+        <div className="w-full bg-gray-100">
             { children }
         </div>
     )

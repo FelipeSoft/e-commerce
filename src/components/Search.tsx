@@ -17,7 +17,7 @@ export const Search = () => {
             <div className="flex items-center h-10">
                 <div className="flex items-center h-full w-full relative ml-8">
                     <input placeholder="O que você deseja encontrar?" type="text" className="mr-4 h-full bg-gray-100 outline-none rounded-full w-80 px-6 py-1 border-2 border-gray-100 focus:border-2 focus:border-indigo-700"/>
-                    <button className="hover:px-8 transition-all absolute right-2 bg-indigo-700 h-full w-10 rounded-full flex items-center justify-center text-white"><BiSearchAlt className="fixed"/></button>
+                    <button className="hover:px-8 transition-all absolute right-2 bg-indigo-700 h-full w-10 rounded-full flex items-center justify-center text-white"><BiSearchAlt className="absolute"/></button>
                 </div>
             </div>
         </div>

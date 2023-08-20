@@ -5,7 +5,7 @@ type Props = {
 
 export const Card = ({ icon, label }: Props) => {
     return (
-        <div className="w-full flex items-center border-2 border-gray-200 p-4 rounded-md">
+        <div className="w-full flex items-center p-4 rounded-md bg-white shadow-xl">
             { icon }
             { label }
         </div>

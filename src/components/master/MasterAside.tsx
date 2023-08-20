@@ -1,9 +1,9 @@
-import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi";
+import { Top } from "../Top";
 
 export const MasterAside = () => {
     return (
         <div className="w-1/4 h-full">
-            <nav className="flex flex-col border-2 border-gray-150 mb-8 rounded-md">  
+            <nav className="flex flex-col mb-8 rounded-md bg-white shadow-xl">  
                 <a className="w-full py-2 px-4 hover:bg-gray-200" href="">Smartphones</a>
                 <a className="w-full py-2 px-4 hover:bg-gray-200" href="">Desktops</a>
                 <a className="w-full py-2 px-4 hover:bg-gray-200" href="">Notebooks</a>
@@ -11,18 +11,12 @@ export const MasterAside = () => {
                 <a className="w-full py-2 px-4 hover:bg-gray-200" href="">Teclados</a>
                 <a className="w-full py-2 px-4 hover:bg-gray-200" href="">Fones de Ouvido</a>
             </nav>
-            <div className="bg-indigo-700 text-white flex items-center justify-center h-96 mb-4 rounded-md">
+            <div className="bg-indigo-700 text-white flex items-center justify-center h-96 mb-4 rounded-md shadow-xl">
                 Imagem
             </div>
             <div>
-                <div className="bg-indigo-700 flex items-center justify-between px-4 py-2 rounded-t-md">
-                    <p className="text-white font-medium">Favoritos</p>
-                    <div className="flex items-center gap-2">
-                        <div className="bg-white text-black rounded-full h-7 w-7 flex items-center justify-center cursor-pointer"><PiCaretLeftBold className="text-black"/></div>
-                        <div className="bg-white text-black rounded-full h-7 w-7 flex items-center justify-center cursor-pointer"><PiCaretRightBold className="text-black"/></div>
-                    </div>
-                </div>
-                <div className="border-gray-150 border-b-2 border-r-2 border-l-2 px-4 py-2 flex items-center rounded-b-md">
+                <Top label="Favoritos"/>
+                <div className="border-gray-150 bg-white px-4 py-2 flex items-center rounded-b-md shadow-xl">
                     <div className="h-10 w-10 bg-indigo-700 text-white mr-4 text-center">
                         ...
                     </div>

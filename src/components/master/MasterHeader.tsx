@@ -7,7 +7,7 @@ import { Search } from "../Search";
 export const MasterHeader = () => {
     return (
         <header>
-            <div className="border-b-2 border-b-gray-100 bg-gray-100">
+            <div className="bg-gray-100">
                 <div className="container mx-auto py-1">
                     <nav className="w-full flex items-center justify-between">
                         <ul>
@@ -25,7 +25,7 @@ export const MasterHeader = () => {
                     </nav>
                 </div>
             </div>
-            <div className="border-b-2 border-b-gray-100 shadow-md">
+            <div className="shadow-md bg-white">
                 <div className="container mx-auto py-1">
                     <div className="flex items-center justify-between">
                         <h1 className="text-3xl font-semibold">e<span className="text-indigo-700">commerce</span></h1>
