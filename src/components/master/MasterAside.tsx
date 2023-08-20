@@ -3,7 +3,7 @@ import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi";
 export const MasterAside = () => {
     return (
         <div className="w-1/4 h-full">
-            <nav className="flex flex-col border-2 border-gray-150 mb-4">  
+            <nav className="flex flex-col border-2 border-gray-150 mb-8">  
                 <a className="w-full py-2 px-4 hover:bg-gray-200" href="">Smartphones</a>
                 <a className="w-full py-2 px-4 hover:bg-gray-200" href="">Desktops</a>
                 <a className="w-full py-2 px-4 hover:bg-gray-200" href="">Notebooks</a>

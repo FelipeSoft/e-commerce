@@ -1,5 +1,11 @@
-export const MasterVersatile = () => {
+type Props = {
+    children: React.ReactNode;
+}
+
+export const MasterVersatile = ({ children }: Props) => {
     return (
-        <div className="w-3/4 border-2 border-gray-150 p-4 h-full">Versatile</div>
+        <div className="w-3/4 h-full flex flex-col">
+            { children }
+        </div>
     )
 }

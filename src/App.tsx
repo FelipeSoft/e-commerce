@@ -1,4 +1,4 @@
-import { Master } from "../src/components/master";
+import { Master } from './components/master';
 
 const App = () => {
     return (
@@ -7,7 +7,9 @@ const App = () => {
                 <Master.Header />
                     <Master.Main>
                         <Master.Aside />
-                        <Master.Versatile />
+                        <Master.Versatile>
+                            <Master.Slider></Master.Slider>
+                        </Master.Versatile>
                     </Master.Main>
                 <Master.Footer />   
             </Master.Root>

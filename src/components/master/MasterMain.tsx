@@ -4,7 +4,7 @@ type Props = {
 
 export const MasterMain = ({ children }: Props) => {
     return (
-        <div className="container mx-auto py-4 flex w-full gap-4">
+        <div className="container mx-auto my-8 flex w-full gap-8">
             { children }
         </div>
     )
