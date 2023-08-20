@@ -1,4 +1,7 @@
+import { BiSupport } from 'react-icons/bi';
+import { CardList } from './components/CardList';
 import { Master } from './components/master';
+import { Card } from './components/Card';
 
 const App = () => {
     return (
@@ -8,7 +11,21 @@ const App = () => {
                     <Master.Main>
                         <Master.Aside />
                         <Master.Versatile>
-                            <Master.Slider></Master.Slider>
+                            <Master.Slider />
+                            <CardList>
+                                <Card
+                                    icon={<BiSupport className="text-4xl mr-4" />}
+                                    label="Suporte Gratuito"
+                                />
+                                <Card
+                                    icon={<BiSupport className="text-4xl mr-4" />}
+                                    label="Suporte Gratuito"
+                                />
+                                <Card
+                                    icon={<BiSupport className="text-4xl mr-4" />}
+                                    label="Suporte Gratuito"
+                                />
+                            </CardList>
                         </Master.Versatile>
                     </Master.Main>
                 <Master.Footer />   
