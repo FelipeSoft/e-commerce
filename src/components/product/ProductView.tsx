@@ -55,7 +55,7 @@ export const ProductView = () => {
     }, [slug])
 
     return (
-        <div className="w-full rounded-md flex flex-col gap-8 bg-white p-4">
+        <div className="w-full rounded-md flex flex-col gap-8 bg-white p-4 shadow-md">
             <p className="text-indigo-700 flex items-center cursor-pointer" onClick={handleBack}><BsFillArrowLeftCircleFill className="text-indigo-700 mr-2"/>Voltar</p>
             <div className="flex">
                 <div className="text-black w-1/2">
