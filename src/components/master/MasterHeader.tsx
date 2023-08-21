@@ -14,6 +14,8 @@ export const MasterHeader = () => {
     const handleDisable = () => {
         dispatch(setCartDisable(!cart.disable));
     };
+    
+    let lengthOfCart = 0;
 
     return (
         <header>
@@ -45,7 +47,7 @@ export const MasterHeader = () => {
                             <div className="flex items-center ml-8 cursor-pointer" onClick={handleDisable}>
                                 <div className="relative flex items-center justify-center" >
                                     <LuShoppingCart className="text-xl" />
-                                    <div className="absolute -top-2 -right-2 rounded-full bg-indigo-700 text-white text-xs w-4 h-4 flex items-center justify-center">0</div>
+                                    <div className="absolute -top-2 -right-2 rounded-full bg-indigo-700 text-white text-xs w-4 h-4 flex items-center justify-center">{ cart.products.map(element => lengthOfCart += element.quantity) ? lengthOfCart : 0 }</div>
                                 </div>
                                 <div className="flex flex-col items-start ml-6">
                                     <h2 className="text-lg font-semibold">Meu carrinho</h2>

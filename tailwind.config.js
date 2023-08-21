@@ -8,6 +8,9 @@ module.exports = {
       margin: {
         "cart": "33vw",
         "-cart": "-33vw"
+      },
+      height: {
+        "cart": "calc(100vh - 56px)"
       }
     },
   },
