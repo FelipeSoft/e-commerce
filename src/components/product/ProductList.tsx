@@ -1,4 +1,4 @@
-import { Top } from "./Top";
+import { Top } from "../Top";
 
 type Props = {
     children: React.ReactNode;

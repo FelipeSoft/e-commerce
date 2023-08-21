@@ -3,8 +3,18 @@ import { LuShoppingCart } from "react-icons/lu";
 import { MdEmail } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa";
 import { Search } from "../Search";
+import { useAppSelector } from "../../redux/hooks/useAppSelector";
+import { useDispatch } from "react-redux";
+import { setCartDisable } from "../../redux/reducers/CartReducer";
 
 export const MasterHeader = () => {
+    const cart = useAppSelector(state => state.cart);
+    const dispatch = useDispatch();
+
+    const handleDisable = () => {
+        dispatch(setCartDisable(!cart.disable));
+    };
+
     return (
         <header>
             <div className="bg-gray-100">
@@ -28,12 +38,12 @@ export const MasterHeader = () => {
             <div className="shadow-md bg-white">
                 <div className="container mx-auto py-1">
                     <div className="flex items-center justify-between">
-                        <h1 className="text-3xl font-semibold">e<span className="text-indigo-700">commerce</span></h1>
+                        <a href="/"><h1 className="text-3xl font-semibold">e<span className="text-indigo-700">commerce</span></h1></a>
                         <Search />
                         <nav className="flex items-center">
                             <a href=""><FaRegUser className="text-xl" /></a>
-                            <div className="flex items-center ml-8 cursor-pointer">
-                                <div className="relative flex items-center justify-center">
+                            <div className="flex items-center ml-8 cursor-pointer" onClick={handleDisable}>
+                                <div className="relative flex items-center justify-center" >
                                     <LuShoppingCart className="text-xl" />
                                     <div className="absolute -top-2 -right-2 rounded-full bg-indigo-700 text-white text-xs w-4 h-4 flex items-center justify-center">0</div>
                                 </div>
