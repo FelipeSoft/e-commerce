@@ -32,12 +32,14 @@ export const ProductView = () => {
     }
 
     const handleInsert = (product: CartProduct) => {
-        dispatch(addCartProduct({
-            id: product.id,
-            name: product.name,
-            image: product.image,
-            quantity: quantity, 
-        }));
+        if(quantity > 0) {
+            dispatch(addCartProduct({
+                id: product.id,
+                name: product.name,
+                image: product.image,
+                quantity: quantity, 
+            }));
+        }
     }   
 
     const handleBack = () => {
