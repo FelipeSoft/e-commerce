@@ -38,6 +38,7 @@ export const ProductView = () => {
                 name: product.name,
                 image: product.image,
                 price: product.price,
+                discountedPrice: product.discountedPrice,
                 quantity: quantity, 
             }));
         }
@@ -82,6 +83,7 @@ export const ProductView = () => {
                                 image: product?.image ?? "",
                                 name: product?.name ?? "",
                                 price: product?.price ?? 0,
+                                discountedPrice: product?.discount ? (product?.price ?? 0 - (product?.price ?? 0 * (product?.discount ?? 0))),
                                 quantity: quantity
                             })
                             }>

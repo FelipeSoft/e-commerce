@@ -16,6 +16,7 @@ export const MasterHeader = () => {
     };
     
     let lengthOfCart = 0;
+    let priceOfCart = 0;
 
     return (
         <header>
@@ -51,7 +52,7 @@ export const MasterHeader = () => {
                                 </div>
                                 <div className="flex flex-col items-start ml-6">
                                     <h2 className="text-lg font-semibold">Meu carrinho</h2>
-                                    <p className="text-sm text-gray-400 font-medium">R$ 0</p>
+                                    <p className="text-sm text-gray-400 font-medium">R$ { cart.products.map(element => priceOfCart += element.discountedPrice ?? element.price)}</p>
                                 </div>
                             </div>
                         </nav>
