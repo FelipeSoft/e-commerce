@@ -19,25 +19,30 @@ export const slice = createSlice({
             const { id, quantity } = action.payload;
             const product = state.products.find(element => element.id === id);
             if (product) {
-                updateCartProduct({id, quantity: quantity + 1});
+                product.quantity += 1;
             }
         },
         decrement: (state, action) => {
             const { id, quantity } = action.payload;
             const product = state.products.find(element => element.id === id);
-            if (product) {
-                updateCartProduct({id, quantity: quantity - 1});
+            if (product && product.quantity > 1) {
+                product.quantity -= 1;
             }
         },
         addCartProduct: (state, action: PayloadAction<CartProduct>) => {
-            state.products.push(action.payload);
+            const existingProduct = state.products.find(product => product.id === action.payload.id);
+            if (existingProduct) {
+                existingProduct.quantity += action.payload.quantity; 
+            } else {
+                state.products.push(action.payload);
+            }
         },
         updateCartProduct: (state, action) => {
             const { id, quantity } = action.payload;
             const product = state.products.find(element => element.id === id)
 
             if(product){
-                product.quantity = quantity
+                product.quantity += quantity
             }
         },
         removeCartProduct: (state, action) => {

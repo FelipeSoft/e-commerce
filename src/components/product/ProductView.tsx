@@ -1,55 +1,42 @@
-import { useParams } from "react-router-dom";
-import { StarRating } from "../StarRating"
 import { useEffect, useState } from "react";
-import { Product } from "../../types/Product";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "../../redux/hooks/useAppSelector";
+import { decrement, increment, addCartProduct } from "../../redux/reducers/CartReducer";
+import { CartProduct } from "../../types/CartProduct";
+import { StarRating } from "../StarRating";
 import { productFeatures } from "../../utils/productFeatures";
 import { Count } from "../Count";
 import { Button } from "../button";
 import { BsCartPlus } from "react-icons/bs";
-import { CartProduct } from "../../types/CartProduct";
-import { addCartProduct, decrement, increment, updateCartProduct } from "../../redux/reducers/CartReducer";
-import { useAppSelector } from "../../redux/hooks/useAppSelector";
-import { useDispatch } from "react-redux";
+import { Product } from "../../types/Product";
 
 export const ProductView = () => {
     const [product, setProduct] = useState<Product | null>(null);
+    const [quantity, setQuantity] = useState(0);
     const { slug } = useParams();
     const cart = useAppSelector(state => state.cart);
     const dispatch = useDispatch();
-    const [quantity, setQuantity] = useState(0);
 
-    const handleDecrement = (currentQuantity: number, id: number) => {
-        if (currentQuantity > 1) {
-            setQuantity(quantity - 1)
-            const newQuantity = currentQuantity - 1;
-            dispatch(decrement({id, quantity: newQuantity}))
+    const handleDecrement = () => {
+        if (quantity > 0) {
+            setQuantity(quantity - 1); 
+            dispatch(decrement(product?.id || 0));
         }
     }
 
-    const handleIncrement = (currentQuantity: number, id: number) => {
-        setQuantity(quantity + 1)
-        const newQuantity = currentQuantity + 1;
-        dispatch(increment({id, quantity: newQuantity}));
+    const handleIncrement = () => {
+        setQuantity(quantity + 1); 
+        dispatch(increment(product?.id || 0));
     }
-
 
     const handleInsert = (product: CartProduct) => {
-        const productAlreadyExists = cart.products.find(element => element.id === product.id);
-        if(product.id !== undefined) {
-            if(productAlreadyExists){
-                dispatch(updateCartProduct({
-                    id: product.id,
-                    quantity: product.quantity
-                }))
-            } else {
-                dispatch(addCartProduct({
-                    id: product.id,
-                    name: product.name,
-                    image: product.image,
-                    quantity: product.quantity
-                }))
-            }
-        }
+        dispatch(addCartProduct({
+            id: product.id,
+            name: product.name,
+            image: product.image,
+            quantity: quantity, 
+        }));
     }   
 
     useEffect(() => {
@@ -78,7 +65,7 @@ export const ProductView = () => {
                 </div>
                 <p className="text-justify">{product?.description}</p>
                 <div className="flex items-center mt-6 gap-4">
-                    <Count handleDecrement={() => handleDecrement(quantity, product?.id || 0)} handleIncrement={() => handleIncrement(quantity, product?.id || 0)} count={quantity} legend={true}/>
+                    <Count handleDecrement={handleDecrement} handleIncrement={handleIncrement} count={quantity} legend={true}/>
                     <Button.Root defaultTextColor="text-indigo-700" hoverTextColor="text-white" label="Adicionar ao Carrinho" onClick={
                         () => handleInsert({
                             id: product?.id ?? 0,

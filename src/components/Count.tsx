@@ -1,4 +1,4 @@
-import { useState } from "react";
+// Count.tsx
 import { BiMinus, BiPlus } from "react-icons/bi";
 
 type Props = {
