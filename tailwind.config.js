@@ -4,7 +4,12 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      margin: {
+        "cart": "33vw",
+        "-cart": "-33vw"
+      }
+    },
   },
   plugins: [],
 }

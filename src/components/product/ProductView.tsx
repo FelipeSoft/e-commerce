@@ -37,6 +37,7 @@ export const ProductView = () => {
                 id: product.id,
                 name: product.name,
                 image: product.image,
+                price: product.price,
                 quantity: quantity, 
             }));
         }
@@ -55,10 +56,10 @@ export const ProductView = () => {
     }, [slug])
 
     return (
-        <div className="w-full rounded-md flex flex-col gap-8 bg-white p-4 shadow-md">
+        <div className="w-full rounded-md flex flex-col bg-white p-4 shadow-md">
             <p className="text-indigo-700 flex items-center cursor-pointer" onClick={handleBack}><BsFillArrowLeftCircleFill className="text-indigo-700 mr-2"/>Voltar</p>
-            <div className="flex">
-                <div className="text-black w-1/2">
+            <div className="flex gap-20">
+                <div className="text-black w-1/2 p-8">
                     <img src={product?.image} alt="" />
                 </div>
                 <div className="flex flex-col items-start justify-center w-1/2">
@@ -80,6 +81,7 @@ export const ProductView = () => {
                                 id: product?.id ?? 0,
                                 image: product?.image ?? "",
                                 name: product?.name ?? "",
+                                price: product?.price ?? 0,
                                 quantity: quantity
                             })
                             }>
