@@ -13,7 +13,7 @@ type Props = {
 
 export const Product = ({ name, rating, price, discount, indicated, image, onClick }: Props) => {
     return (
-        <div className="w-full bg-gray-100 flex flex-col items-center justify-between p-4 rounded-md cursor-pointer" onClick={onClick}>
+        <div className="w-full bg-gray-300 flex flex-col items-center justify-between p-4 rounded-md cursor-pointer" onClick={onClick}>
             <div className="flex items-center justify-between w-full">
                 <div className={`text-white bg-orange-600 text-xs rounded-md py-0.5 px-2 ${indicated ? "opacity-1" : "opacity-0"}`}>Indicado</div>
                 {discount !== 0 && <div className="text-white bg-black text-xs rounded-md py-0.5 px-2">{discount * 100}%</div>}
