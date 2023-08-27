@@ -19,9 +19,9 @@ export const productFeatures = {
     calculateTotalCartPrice: (products: Array<CartProduct>) => {
         return products.reduce((total, product) => {
             if (product.discountedPrice !== 0) {
-                return total + (product.discountedPrice * product.quantity);
+                return total += (product.discountedPrice * product.quantity);
             } else {
-                return total + (product.price * product.quantity);
+                return total += (product.price * product.quantity);
             } 
         }, 0);
     }

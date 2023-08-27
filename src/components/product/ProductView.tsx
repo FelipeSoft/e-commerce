@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useAppSelector } from "../../redux/hooks/useAppSelector";
 import { decrement, increment, addCartProduct, setCartDisable } from "../../redux/reducers/CartReducer";
 import { CartProduct } from "../../types/CartProduct";
 import { StarRating } from "../StarRating";
 import { productFeatures } from "../../utils/productFeatures";
 import { Count } from "../Count";
-import { Button } from "../button";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { Product } from "../../types/Product";
 import { MdAddShoppingCart } from "react-icons/md";
+import { Button } from "../button/index";
 
 export const ProductView = () => {
     const [product, setProduct] = useState<Product | null>(null);
