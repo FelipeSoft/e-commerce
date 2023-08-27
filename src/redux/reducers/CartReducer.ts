@@ -6,11 +6,13 @@ import { persistReducer } from "redux-persist";
 interface CartState {
     products: CartProduct[];
     disable: boolean;
+    priceOfCart: number;
 }
 
 const initialState: CartState = {
     products: [],
-    disable: true
+    disable: true,
+    priceOfCart: 0
 }
 
 export const cartSlice = createSlice({
@@ -18,14 +20,14 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         increment: (state, action) => {
-            const { id, quantity } = action.payload;
+            const { id } = action.payload;
             const product = state.products.find(element => element.id === id);
             if (product) {
                 product.quantity += 1;
             }
         },
         decrement: (state, action) => {
-            const { id, quantity } = action.payload;
+            const { id } = action.payload;
             const product = state.products.find(element => element.id === id);
             if (product && product.quantity > 1) {
                 product.quantity -= 1;
@@ -53,7 +55,7 @@ export const cartSlice = createSlice({
         },
         setCartDisable: (state, action) => {
             state.disable = action.payload;
-        }
+        },
     }
 });
 

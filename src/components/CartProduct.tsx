@@ -17,7 +17,12 @@ export const CartProduct = ({ image, name, children, onClick, partialPrice }: Pr
                     <h3 className="mb-2">{productFeatures.limitCharacters(name, 30)}</h3>
                     <div className="flex items-center">
                         { children }
-                        <p className="ml-4 text-sm font-bold text-lime-600">R$ { partialPrice.toFixed(2) }</p>
+                        <p className="ml-4 text-sm font-bold text-lime-600">R$ {partialPrice.toLocaleString("pt-BR", {
+                            style: "decimal",
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                            })}
+                        </p>
                     </div>
                 </div>
            </div>
