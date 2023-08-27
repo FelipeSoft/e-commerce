@@ -1,5 +1,4 @@
 import { products } from "../data/products"
-import { CartProduct } from "../types/CartProduct";
 import { Product } from "../types/Product";
 
 export const productFeatures = {
@@ -15,14 +14,5 @@ export const productFeatures = {
             return text.slice(0, maxLength - 3) + "...";
         }
         return text;
-    },
-    calculateTotalCartPrice: (products: Array<CartProduct>) => {
-        return products.reduce((total, product) => {
-            if (product.discountedPrice !== 0) {
-                return total + (product.discountedPrice * product.quantity);
-            } else {
-                return total + (product.price * product.quantity);
-            } 
-        }, 0);
     }
 }

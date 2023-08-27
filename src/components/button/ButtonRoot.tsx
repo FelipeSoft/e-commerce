@@ -10,7 +10,7 @@ export const ButtonRoot = ({ children, label, defaultTextColor, hoverTextColor, 
     return (
         <button className="group flex items-center relative" onClick={onClick}>
             { children }
-            <p className={`${defaultTextColor} text-sm font-semibold ml-12 z-10 group-hover:${hoverTextColor} pr-4`}>{ label }</p>
+            <p className={`${defaultTextColor} ml-12 z-10 group-hover:${hoverTextColor} pr-4`}>{ label }</p>
         </button>
     )
 } 

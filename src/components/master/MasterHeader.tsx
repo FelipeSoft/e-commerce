@@ -6,7 +6,8 @@ import { Search } from "../Search";
 import { useAppSelector } from "../../redux/hooks/useAppSelector";
 import { useDispatch } from "react-redux";
 import { setCartDisable } from "../../redux/reducers/CartReducer";
-import { productFeatures } from "../../utils/productFeatures";
+import { parse } from "path";
+import { CartProduct } from "../../types/CartProduct";
 
 export const MasterHeader = () => {
     const cart = useAppSelector(state => state.cart);
@@ -15,6 +16,16 @@ export const MasterHeader = () => {
     const handleDisable = () => {
         dispatch(setCartDisable(!cart.disable));
     };
+    
+    let priceOfCart = cart.products.reduce((total, product) => {
+        if (product.discountedPrice !== 0) {
+            return total + product.discountedPrice * product.quantity;
+        } else {
+            return total + product.price * product.quantity;
+        } 
+    }, 0);
+    
+    let lengthOfCart = 0;
 
     return (
         <header>
@@ -46,19 +57,11 @@ export const MasterHeader = () => {
                             <div className="flex items-center ml-8 cursor-pointer" onClick={handleDisable}>
                                 <div className="relative flex items-center justify-center" >
                                     <LuShoppingCart className="text-xl" />
-                                    <div className="absolute -top-2 -right-2 rounded-full bg-indigo-700 text-white text-xs w-4 h-4 flex items-center justify-center">{
-                                        cart.products.reduce((total, product) => total + product.quantity, 0)
-                                    }</div>
+                                    <div className="absolute -top-2 -right-2 rounded-full bg-indigo-700 text-white text-xs w-4 h-4 flex items-center justify-center">{ cart.products.map(element => lengthOfCart += element.quantity) ? lengthOfCart : 0 }</div>
                                 </div>
                                 <div className="flex flex-col items-start ml-6">
                                     <h2 className="text-lg font-semibold">Meu carrinho</h2>
-                                    <p className="text-sm text-gray-400 font-medium">
-                                        R$ {(productFeatures.calculateTotalCartPrice(cart.products)).toLocaleString("pt-BR", {
-                                            style: "decimal",
-                                            minimumFractionDigits: 2,
-                                            maximumFractionDigits: 2
-                                        })}
-                                    </p>
+                                    <p className="text-sm text-gray-400 font-medium">R$ {priceOfCart !== 0 ? priceOfCart.toFixed(2) : 0}</p>
                                 </div>
                             </div>
                         </nav>
