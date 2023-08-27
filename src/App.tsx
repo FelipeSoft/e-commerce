@@ -37,7 +37,14 @@ const App = () => {
             <Cart onClick={handleDisable} disable={cart.disable}>
                 {cart.products.map(element => {
                     return (
-                        <CartProduct partialPrice={element.quantity * element.price} onClick={() => handleRemove(element.id)} image={element.image} name={element.name}>
+                        <CartProduct partialPrice={
+                            element.discountedPrice !== 0
+                            ? (element.discountedPrice * element.quantity)
+                            : (element.price * element.quantity)} 
+
+                            onClick={() => handleRemove(element.id)} 
+                            image={element.image} 
+                            name={element.name}>
                             <Count 
                                 handleDecrement={() => handleDecrement(element.quantity, element.id)} 
                                 handleIncrement={() => handleIncrement(element.quantity, element.id)} 

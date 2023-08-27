@@ -10,6 +10,7 @@ import { Count } from "../Count";
 import { Button } from "../button";
 import { BsCartPlus, BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { Product } from "../../types/Product";
+import { MdPriceChange } from "react-icons/md";
 
 export const ProductView = () => {
     const [product, setProduct] = useState<Product | null>(null);
@@ -83,7 +84,7 @@ export const ProductView = () => {
                                 image: product?.image ?? "",
                                 name: product?.name ?? "",
                                 price: product?.price ?? 0,
-                                discountedPrice: product?.price ?? 0 - (product?.price ?? 0 * (product?.discount ?? 0)),
+                                discountedPrice: product?.discount ? (product.price - (product.price * product.discount)) : 0,
                                 quantity: quantity
                             })
                             }>
