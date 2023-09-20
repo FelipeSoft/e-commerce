@@ -18,7 +18,7 @@ export const products: Array<Product> = [
         image: "/assets/images/desktop-removebg-preview.png",
         description: "O Desktop I9 é uma máquina de elite, com 32GB de RAM, SSD de 1TB e RTX 4090, ideal para jogos e produção de conteúdo de última geração.",
         category: "Desktops", 
-        price: 12989.90, 
+        price: 56987.90, 
         rating: 4.0, 
         indicated: true, 
         discount: 0.2

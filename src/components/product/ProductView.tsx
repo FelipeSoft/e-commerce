@@ -1,21 +1,20 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useAppSelector } from "../../redux/hooks/useAppSelector";
-import { decrement, increment, addCartProduct } from "../../redux/reducers/CartReducer";
+import { decrement, increment, addCartProduct, setCartDisable } from "../../redux/reducers/CartReducer";
 import { CartProduct } from "../../types/CartProduct";
 import { StarRating } from "../StarRating";
 import { productFeatures } from "../../utils/productFeatures";
 import { Count } from "../Count";
-import { Button } from "../button";
-import { BsCartPlus, BsFillArrowLeftCircleFill } from "react-icons/bs";
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { Product } from "../../types/Product";
+import { MdAddShoppingCart } from "react-icons/md";
+import { Button } from "../button/index";
 
 export const ProductView = () => {
     const [product, setProduct] = useState<Product | null>(null);
     const [quantity, setQuantity] = useState(0);
     const { slug } = useParams();
-    const cart = useAppSelector(state => state.cart);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -33,10 +32,13 @@ export const ProductView = () => {
 
     const handleInsert = (product: CartProduct) => {
         if(quantity > 0) {
+            dispatch(setCartDisable(false));
             dispatch(addCartProduct({
                 id: product.id,
                 name: product.name,
                 image: product.image,
+                price: product.price,
+                discountedPrice: product.discountedPrice,
                 quantity: quantity, 
             }));
         }
@@ -55,10 +57,10 @@ export const ProductView = () => {
     }, [slug])
 
     return (
-        <div className="w-full rounded-md flex flex-col gap-8 bg-white p-4">
+        <div className="w-full rounded-md flex flex-col bg-white p-4 shadow-md">
             <p className="text-indigo-700 flex items-center cursor-pointer" onClick={handleBack}><BsFillArrowLeftCircleFill className="text-indigo-700 mr-2"/>Voltar</p>
-            <div className="flex">
-                <div className="text-black w-1/2">
+            <div className="flex gap-20">
+                <div className="text-black w-1/2 p-8">
                     <img src={product?.image} alt="" />
                 </div>
                 <div className="flex flex-col items-start justify-center w-1/2">
@@ -66,10 +68,28 @@ export const ProductView = () => {
                     <StarRating stars={product?.rating ?? 0} />
                     <div>
                         {product?.discount !== 0 && product?.discount !== undefined &&
-                            <h2 className="my-2 text-2xl flex flex-col items-start"><p className="line-through text-gray-400 text-sm mr-2">R$ {product?.price.toFixed(2)}</p> <span className="font-bold">R$ {(product?.price - (product?.price * product?.discount)).toFixed(2)}</span></h2>
+                            <h2 className="my-2 text-2xl flex flex-col items-start">
+                                <p className="line-through text-gray-400 text-sm mr-2">R$ {product?.price.toLocaleString("pt-BR", {
+                                    style: "decimal",
+                                    minimumFractionDigits: 2,
+                                    maximumFractionDigits: 2
+                                    })}
+                                </p> 
+                                <span className="font-bold">R$ {(product?.price - (product?.price * product?.discount)).toLocaleString("pt-BR", {
+                                    style: "decimal",
+                                    minimumFractionDigits: 2,
+                                    maximumFractionDigits: 2
+                                    })}
+                                </span>
+                            </h2>
                         }
                         {product?.discount === 0 &&
-                            <h2 className="my-2 text-2xl font-bold">R$ {product?.price.toFixed(2)}</h2>
+                            <h2 className="my-2 text-2xl font-bold">R$ {product?.price.toLocaleString("pt-BR", {
+                                style: "decimal",
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2
+                                })}
+                            </h2>
                         }
                     </div>
                     <p className="text-justify">{product?.description}</p>
@@ -80,10 +100,12 @@ export const ProductView = () => {
                                 id: product?.id ?? 0,
                                 image: product?.image ?? "",
                                 name: product?.name ?? "",
+                                price: product?.price ?? 0,
+                                discountedPrice: product?.discount ? (product.price - (product.price * product.discount)) : 0,
                                 quantity: quantity
                             })
                             }>
-                            <Button.Icon color="bg-indigo-700" icon={<BsCartPlus className="text-white w-6 h-6 absolute left-0 ml-2"/>} />
+                            <Button.Icon color="bg-indigo-700" icon={<MdAddShoppingCart className="text-white w-6 h-6 absolute left-0 ml-2"/>} />
                         </Button.Root>
                     </div>
                 </div>

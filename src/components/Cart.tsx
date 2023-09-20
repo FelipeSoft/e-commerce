@@ -1,4 +1,7 @@
-import { MdOutlineCancel } from "react-icons/md";
+import { BsArrowLeft } from "react-icons/bs";
+import { useAppSelector } from "../redux/hooks/useAppSelector";
+import { productFeatures } from "../utils/productFeatures";
+import { ButtonDefault } from "../components/button/ButtonDefault";
 
 type Props = {
     children: React.ReactNode;
@@ -7,16 +10,32 @@ type Props = {
 }
 
 export const Cart = ({ onClick, disable, children }: Props) => {
+    const cart = useAppSelector(state => state.cart);
+
     return (
-        <div className={`w-screen h-screen fixed bg-black/70 z-20 ${disable && "hidden"} ${!disable && "block"}`}>
-            <div className="h-screen bg-white w-1/3 absolute top-0 bottom-0 right-0 z-30 overflow-y-auto">
-                <div className="w-full bg-indigo-700 py-4 px-8 text-white font-medium text-lg flex items-center cursor-pointer" onClick={onClick}>
-                    <MdOutlineCancel className="text-3xl text-white cursor-pointer mr-2"/>
-                    Fechar
+        <div className={`h-screen shadow-xl shadow-black bg-white w-1/3 fixed right-0 bottom-0 top-0 z-40 transition-all ${disable && "-mr-cart"} ${!disable && "mr-0 mr-"}`}>
+            <div className="w-full bg-indigo-700 h-14 px-8 text-white font-medium text-lg flex items-center justify-between cursor-pointer" onClick={onClick}>
+                <div className="flex items-center">
+                    <BsArrowLeft className="text-3xl text-white cursor-pointer mr-4 "/>
+                    <p>Meu Carrinho</p>
                 </div>
-                <div className="w-full flex flex-col">
+                <span>R$ {productFeatures.calculateTotalCartPrice(cart.products).toLocaleString("pt-BR", {
+                    style: "decimal",
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                    })}
+                </span>
+            </div>
+            <div className={`w-full flex flex-col ${ cart.products.length === 0 && "items-center justify-center"} h-cart`}>
+                <div className="overflow-y-auto">
                     { children }
                 </div>
+                { cart.products.length === 0 && <h1 className="text-2xl font-bold">Nenhum item no carrinho... 😢</h1> }
+                { cart.products.length !== 0 && (
+                    <div className="w-full bg-white shadow-gray-500 shadow-top fixed bottom-0">
+                        <ButtonDefault label="CONFIRMAR PEDIDO"/>
+                    </div>
+                ) }
             </div>
         </div>
     )
