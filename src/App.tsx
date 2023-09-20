@@ -43,7 +43,6 @@ const App = () => {
                         </CartProduct>
                     );
                 })}
-                
             </Cart>
             <MasterRoutes />
         </div>
